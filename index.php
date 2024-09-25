@@ -41,11 +41,6 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-        .receipt {
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
         .menu {
             margin-bottom: 20px;
         }
@@ -65,7 +60,7 @@
             </ul>
         </div>
 
-        <form method="post" action="">
+        <form method="post" action="receipt.php">
             <label for="item">Select Item:</label>
             <select id="item" name="item" required>
                 <option value="50">Halo-Halo - PHP 50</option>
@@ -83,25 +78,6 @@
 
             <input type="submit" value="Submit">
         </form>
-
-        <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $item = (int)$_POST["item"];
-                $quantity = (int)$_POST["quantity"];
-                $payment = (int)$_POST["payment"];
-                $total = $item * $quantity;
-                $change = $payment - $total;
-
-                echo "<div class='receipt'>";
-                echo "<h2>Receipt</h2>";
-                echo "<p>Item: " . htmlspecialchars($_POST["item"]) . "</p>";
-                echo "<p>Quantity: $quantity</p>";
-                echo "<p>Total: PHP $total</p>";
-                echo "<p>Payment: PHP $payment</p>";
-                echo $change >= 0 ? "<p>Change: PHP $change</p>" : "<p>Insufficient payment!</p>";
-                echo "</div>";
-            }
-        ?>
     </div>
 </body>
 </html>
